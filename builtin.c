@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	char command[MAX_COMMAND_LENGTH];
 	pid_t pid;
 	int status;
-	
+
 	while (1)
 	{
 		printf("#cisfun$ ");
@@ -38,9 +38,10 @@ int main(int argc, char **argv)
 		else
 		{
 			do
-			{
+
 				waitpid(pid, &status, WUNTRACED);
-			}
+		}
+		{
 			while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		}
 	}
