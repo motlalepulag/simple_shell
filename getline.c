@@ -1,61 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#define READ_BUF_SIZE 1024
 
 /**
- * Reads a line of input from a file and stores it in a buffer.
+ * _getline - reads input from the command line and returns it as a string
  *
- * @param[in]   file    The file to read from.
- * @param[out]  buffer  The buffer to store the input in.
- * @param[in]   size    The maximum number of characters to read.
- *
- * @return      The number of characters read, or -1 if an error occurred.
+ * Return: a pointer to the input string or NULL on failure
  */
-
-char *my_getline()
+char *_getline(void)
 {
-	static char buf[1024];
-	char *line = NULL;
-	int line_len = 0, buf_len = 0;
+	char *buf = NULL, *tmp = NULL;
+	size_t buf_size = 0, read_size = 0, total_size = 0;
 
-	while (1)
-	{
-		if (pos == len)
+	do {
+		buf_size += READ_BUF_SIZE;
+		tmp = realloc(buf, buf_size);
+		if (!tmp)
 		{
-			pos = 0;
-			len = fread(buf, sizeof(char), 1024, stdin);
-			if (len == 0)
-			{
-				if (line_len == 0)
-				{
-					return (NULL);
-				}
-				else
-				{
-					break;
-				}
-			}
+			free(buf);
+			return (NULL);
 		}
-		if (buf[pos] == '\n')
+		buf = tmp;
+		read_size = read(STDIN_FILENO, buf + total_size, READ_BUF_SIZE);
+		if (read_size <= 0)
 		{
-			pos++;
-			break;
+			free(buf);
+			return (NULL);
 		}
-		if (line_len == buf_len)
-		{
-			buf_len += 1024;
-			line = realloc(line, buf_len * sizeof(char));
-			if (!line)
-			{
-				return (NULL);
-			}
-		}
-		line[line_len++] = buf[pos++];
-	}
-	if (line_len == 0)
-	{
-		return (NULL);
-	}
-	line[line_len] = '\0';
-	return (line);
+		total_size += read_size;
+	} while (buf[total_size - 1] != '\n');
+	buf[total_size - 1] = '\0';
+	return (buf);
 }
-
