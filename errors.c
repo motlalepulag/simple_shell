@@ -1,5 +1,5 @@
 #include "shell.h"
-motla
+
 /**
  *_eputs - prints an input string
  * @str: the string to be printed
