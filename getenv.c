@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-jj
+
 #define MAX_ARGS 100
 
 /* Function to split a string into tokens */
