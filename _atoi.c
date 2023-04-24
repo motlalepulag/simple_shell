@@ -1,14 +1,16 @@
 #include "shell.h"
 
+#include "shell.h"
+
 /**
  * interactive - returns true if shell is in interactive mode
  * @info: struct address
  *
- * Return: 1 if in interactive mode, 0 otherwise
+ * Return: 1 if interactive mode, 0 otherwise
  */
 int interactive(info_t *info)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return ((isatty(STDIN_FILENO) && info->readfd <= 2) ? 1 : 0);
 }
 
 /**
@@ -17,7 +19,7 @@ int interactive(info_t *info)
  * @delim: the delimiter string
  * Return: 1 if true, 0 if false
  */
-int is_delim(char c, char *delim)
+int is_delim(char c, const char *delim)
 {
 	while (*delim != '\0')
 	{
