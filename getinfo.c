@@ -1,5 +1,5 @@
 #include "shell.h"
-
+tt
 /**
  * clear_info - initializes fields of info_t struct to NULL
  * @info: pointer to info_t struct
