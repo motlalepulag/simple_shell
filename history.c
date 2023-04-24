@@ -1,5 +1,5 @@
 #include "shell.h"
-motla
+
 /**
  * get_history_file - gets the history file
  * @info: parameter struct
