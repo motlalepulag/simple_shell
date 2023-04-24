@@ -1,5 +1,5 @@
 #include "shell.h"
-motld
+
 /**
  * _erratoi - changes a string to an integer
  * @s: the string to be changed
