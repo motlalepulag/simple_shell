@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 		{
 			if (execlp(command, command, (char *)NULL) == -1)
 			{
-				perror("execlp");my naame
+				perror("execlp");
 				exit(EXIT_FAILURE);
 			}
 		}
