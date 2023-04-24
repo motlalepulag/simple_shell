@@ -1,5 +1,5 @@
 #include "shell.h"
-motla
+
 /**
  * main - entry point
  * @ac: arg count
